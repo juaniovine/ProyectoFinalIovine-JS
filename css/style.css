@@ -1,0 +1,115 @@
+/* generales */
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background-color: #f5ee8ab2; 
+    overflow-x: hidden;
+  }
+
+main {
+    margin: 20px;
+    padding: 10px;
+  }
+
+img {
+    display: block;
+    max-width: 100%;
+  }
+
+/* menu */
+ul {
+    list-style-type: none
+  }
+
+menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+}
+
+/* index */
+
+
+/* Productos */
+.btn-comprar {
+  background-color: #0d6ed6;
+  color: rgb(230, 230, 59);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#cantidad {
+  background-color: #0d6ed6;
+  color: rgb(230, 230, 59);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.contenedor-productos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 grey;
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card button:hover {
+  opacity: 0.8;
+}
+
+.modal-box {
+  width: 75%;
+  margin: 20px;
+  max-height: 70vh;
+  color: rgb(207, 207, 49);
+  background-color: rgba(40, 40, 197, 0.995);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  overflow: auto;
+  z-index: 5;
+  top: 50px;
+}
+
+.modal-title {
+  justify-self: start;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
+  margin: 10px;
+}
+
+.modal-cancel {
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.btn-confirmar-compra {
+  background-color: #0d6ed6;
+  color: rgb(230, 230, 59);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
