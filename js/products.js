@@ -12,7 +12,7 @@ const divs = document.createElement('div')
 // title
 const titulo = document.createElement('title') // creo el elemento titulo
 
-titulo.innerText = "Maxiquiosco FC - JS 3ra entrega" //agrego el contenido
+titulo.innerText = "Maxiquiosco FC - Productos" //agrego el contenido
 
 head.appendChild(titulo) // agrego el elemento a mi estructura
 
@@ -53,15 +53,13 @@ header.append(navBar)
 navBar.append(divs)
 divs.append(uls)
 
-
-
-header.style.background = 'grey'
+header.style.background = '#667AD9'
 
 // Titulo de index
 const h1Titulo = document.createElement('h1') //asigno el tag titulo a un H1
 
 h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`; // genero el texto para mi tag h1
-h1Titulo.style.color = 'black'
+h1Titulo.style.color = '#26388C'
 document.body.append(h1Titulo) // Agrego el nodo titulo
 
 
@@ -69,6 +67,7 @@ document.body.append(h1Titulo) // Agrego el nodo titulo
 
 // main
 const main = document.createElement('main') //creo el main
+main.className ='contenedor-productos'
 body.append(main)                           // inserto el main
 
 // listado de productos
@@ -83,10 +82,7 @@ const productos = [
 	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 700, stock: 150, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro"},
 ];
 
-//creo el listado de productos
-const productosContent = document.createElement('div')
-productosContent.className ='contenedor-productos'
-main.append(productosContent)
+
 
 // carrito
 const carrito = [];
@@ -114,6 +110,15 @@ productos.forEach((prod) => {
 
     //agregar el producto al carrito
     btnComprar.onclick = () => {
+    if (prod.stock > 0) {
+        //logica para el boton confirmar con sweetalert
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Producto agregado al carrito',
+            showConfirmationButton: false,
+            timer: 1000
+        }),
         carrito.push({
             id: prod.id,
             img: prod.imag,
@@ -124,11 +129,19 @@ productos.forEach((prod) => {
 
     // JSON para item onclick
     localStorage.setItem('Carrito', JSON.stringify((carrito)))
-
-    // calculo de stock onclick
-    prod.stock > 0 ? console.log('Hay stock de ' + prod.nombre) : alert('Lo sentimos, pero no queda stock de ' + prod.nombre)
+    
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Producto fuera de stock',
+                    text: 'Lo sentimos, pero no queda stock de ' + prod.nombre,
+                    timer: 1500,
+                    timeProgressBar: true
+                });
+            }
+        };
     }
-})
+)
 
 // div para el acceso al carrito
 const divModal = document.createElement('div')
@@ -184,7 +197,6 @@ divModal.addEventListener("click", () => {
     btnConfirmar.innerText = "Confirmar pedido"
     modalHeader.append(btnConfirmar)
     btnConfirmar.className = 'btn-confirmar-compra'
-
 })
 
 
@@ -199,6 +211,6 @@ footer.className = 'footer'
 footer.innerHTML = `
                     Contenido para el footer - Links redes sociales - Fecha - Derechos reservados
                    `
-footer.style.background = '#80ff80'
+footer.style.background = '#667AD9'
 
 

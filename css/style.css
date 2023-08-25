@@ -5,7 +5,7 @@
   }
 
 body {
-    background-color: #f5ee8ab2; 
+    background-color: #FFECB2; 
     overflow-x: hidden;
   }
 
@@ -29,15 +29,43 @@ menu {
     flex-direction: row;
     justify-content: center; 
     align-items: center;
+    background-image: url('../img/boca-dentro-pasto.jpg'); 
 }
 
 /* index */
 
+/* nav menu */
+
+.menu {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: justify;
+  text-decoration: none;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: #D9BC66;
+}
+
+.modal-carrito {
+  
+}
 
 /* Productos */
 .btn-comprar {
-  background-color: #0d6ed6;
-  color: rgb(230, 230, 59);
+  background-color: #263D8C;
+  color: #FFE291;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -75,8 +103,8 @@ menu {
   width: 75%;
   margin: 20px;
   max-height: 70vh;
-  color: rgb(207, 207, 49);
-  background-color: rgba(40, 40, 197, 0.995);
+  color: #FFECB2;
+  background-color: #26388C;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,4 +140,13 @@ menu {
   border: none;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: #26388C;
+  color: #D9BC66;
+}
+
+.swal2-timer-progress-bar {
+  height: 2rem !important;
 }

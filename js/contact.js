@@ -84,20 +84,8 @@ sectionMain.style.background = '#bfffbf'              // aplico estilos
 sectionMain.id = 'home-main'                          // agrego un ID "contenedor" 
 main.append(sectionMain)                              // inserto la section
 
-sectionMain.innerHTML = `<img src="/img/boca-dentro-pasto.jpeg" alt="">Contenido`
 
-
-// promociones main
-
-const sectionPromos = document.createElement('section') //creo la section
-sectionPromos.style.background = '#bfffbf'              // aplico estilos
-sectionPromos.id = 'home-promos'                        // agrego un ID "contenedor"
-main.append(sectionPromos)                              // inserto la section
-
-sectionPromos.innerHTML = `<strong>Promociones</strong>
-                          <img src="/img/cancha-aerea.jpeg" alt="pasto"> Descuentos para nuestros clientes registrados
-                          `
-
+// formulario
 
 
 // FOOTER
