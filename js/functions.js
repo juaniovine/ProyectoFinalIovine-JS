@@ -7,9 +7,7 @@ links.forEach((menu) => {
     `
 })
 
-
 // function para el carrito
-
 const divModal = document.createElement('div')
 divModal.innerHTML = "<button>🛒</button>"
 divModal.className = 'modal-carrito'
@@ -30,7 +28,7 @@ divModal.addEventListener('click', () => {
     `;
     divModal.append(modalHeader);
     
-    // creo el boton para cerrar el modal
+// creo el boton para cerrar el modal
     const modalCancel = document.createElement('h2')
     
     modalCancel.className ='modal-cancel'
@@ -44,7 +42,7 @@ divModal.addEventListener('click', () => {
 });
     modalHeader.append(modalCancel);
     
-    // creo el contenido de mi modal
+// creo el contenido de mi modal
     carrito.forEach((producto,index) => {
         let carritoContent = document.createElement('div')
         carritoContent.className = "modal-content"
@@ -52,10 +50,37 @@ divModal.addEventListener('click', () => {
                     <h3>${producto.nombre}</h3>
                     <img src="${producto.img}" alt="${producto.alt}">
                     <p>Precio c/u: $${producto.precio}</p>
+                    <button class="btn-decrementar">-</button>
                     <p>Cantidad: ${producto.cantidad}</p>
+                    <button class="btn-incrementar">+</button>
                     <p>Total: $${producto.cantidad * producto.precio}</p>
         `;
+// botones de suma y resta de productos
+        const btnIncrementar = carritoContent.querySelector('.btn-incrementar');
+        const btnDecrementar = carritoContent.querySelector('.btn-decrementar');
 
+        btnIncrementar.addEventListener('click', () => {
+            producto.cantidad++;
+            saveLocal();
+            recalcularTotal();
+            actualizarContenidoModal();
+        });
+
+        btnDecrementar.addEventListener('click', () => {
+            if (producto.cantidad > 1) {
+                producto.cantidad--;
+                saveLocal();
+                recalcularTotal();
+                actualizarContenidoModal();
+            }
+        });
+
+        function actualizarContenidoModal() {
+            const cantidadElement = carritoContent.querySelector('p:last-child');
+            cantidadElement.textContent = `Cantidad: ${producto.cantidad}`;
+        }
+
+// boton eliminar
         const eliminar = document.createElement('span');
         eliminar.innerText = '❌';
         eliminar.className = 'delete-product';
@@ -63,28 +88,29 @@ divModal.addEventListener('click', () => {
         eliminar.addEventListener('click', () => {
             carrito.splice(index, 1); 
             modalHeader.removeChild(carritoContent); 
-            recalcularTotal(); 
+            recalcularTotal();
+// recalculo el carrito al borrar items
+            saveLocal();
         });
         
         carritoContent.append(eliminar);
         modalHeader.append(carritoContent);
         console.log(carrito.length)
-
     })
 
     const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
-    // Display total in the modal
+// Display total in the modal
     const totalElement = document.createElement('p');
     totalElement.textContent = `Total a pagar: $${total}`;
     modalHeader.append(totalElement);
 
-    // creo boton de confirmar compra
+//  boton confirmar compra
     const btnConfirmar = document.createElement('button')
     btnConfirmar.innerText = "Confirmar pedido"
     modalHeader.append(btnConfirmar)
     btnConfirmar.className = 'btn-confirmar-compra'
 
-    
+// recalculo el total por cambio de cantidad
 function recalcularTotal() {
     const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
     const totalElement = document.querySelector('.modal-header-total');

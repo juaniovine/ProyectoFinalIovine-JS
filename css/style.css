@@ -163,3 +163,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .delete-product {
   cursor: pointer;
 }
+
+.btn-incrementar {
+  width: 20px;
+  cursor: pointer;
+}
+
+.btn-decrementar {
+  width: 20px;
+  cursor: pointer;
+}
