@@ -73,21 +73,19 @@ body.append(main)                           // inserto el main
 // listado de productos
 
 const productos = [
-    {id: 1, nombre: "Galletitas Oreo", precio: 520, stock: 50, tipo: "almacen", imag:"../img/oreo.jpg", alt: "paquete oreo 117 gramos"},
-    {id: 2, nombre: "Alfajor Jorgito", precio: 220, stock: 100, tipo: "almacen", imag:"../img/alfajor-jorgito.png", alt: "alfajor jorgito simple"},
-	{id: 3, nombre: "Queso Finlandia light 330gr", precio: 850, stock: 0, tipo: "almacen", imag:"../img/finlandia-light.png", alt: "queso crema finlandia 330 gramos"},
-	{id: 4, nombre: "Agua Villavicencio", precio: 320, stock: 200, tipo: "bebidas", imag:"../img/agua-villavicencio.png", alt: "botella agua villavicencio dos litros"},
-	{id: 5, nombre: "Coca Cola 1,75 ltrs", precio: 950, stock: 200, tipo: "bebidas", imag:"../img/coca-cola.png", alt: "coca cola 1,75 litros"},
-	{id: 6, nombre: "Vino Trivento Malbec", precio: 1200, stock: 10, tipo: "bebidas alcoholicas", imag:"../img/trivento-malbec.png", alt: "vino malbec Trivento medalla"},
-	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 700, stock: 150, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro"},
+    {id: 1, nombre: "Galletitas Oreo", precio: 720, stock: 50, tipo: "almacen", imag:"../img/oreo.jpg", alt: "paquete oreo 117 gramos", cantidad: 1},
+    {id: 2, nombre: "Alfajor Jorgito", precio: 280, stock: 100, tipo: "almacen", imag:"../img/alfajor-jorgito.png", alt: "alfajor jorgito simple", cantidad: 1},
+	{id: 3, nombre: "Queso Finlandia light 330gr", precio: 950, stock: 0, tipo: "almacen", imag:"../img/finlandia-light.png", alt: "queso crema finlandia 330 gramos", cantidad: 1},
+	{id: 4, nombre: "Agua Villavicencio", precio: 520, stock: 200, tipo: "bebidas", imag:"../img/agua-villavicencio.png", alt: "botella agua villavicencio dos litros", cantidad: 1},
+	{id: 5, nombre: "Coca Cola 1,75 ltrs", precio: 950, stock: 200, tipo: "bebidas", imag:"../img/coca-cola.png", alt: "coca cola 1,75 litros", cantidad: 1},
+	{id: 6, nombre: "Vino Trivento Malbec", precio: 4000, stock: 10, tipo: "bebidas alcoholicas", imag:"../img/trivento-malbec.png", alt: "vino malbec Trivento medalla", cantidad: 1},
+	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 900, stock: 150, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro", cantidad: 1},
 ];
 
-
-
 // carrito
-const carrito = [];
-// carrito vacio
-carrito.length === 0 && console.log('El carrito está vacío')
+const carrito = []; // primero vacío
+
+carrito.length === 0 && console.log('El carrito está vacío') // validar el contenido
 
 productos.forEach((prod) => {
     const divProds = document.createElement('div')    
@@ -97,35 +95,43 @@ productos.forEach((prod) => {
                      <h3>${prod.nombre}</h3>
                      <img src="${prod.imag}" alt="${prod.alt}">
                      <p>Precio: $${prod.precio}</p>
+                     <p>Cantidad: ${prod.cantidad}</p>
                      </div>
                      `;
     
     // creo y agrego el boton para comprar
     const btnComprar = document.createElement('button')
     btnComprar.innerText = "Agregar al carrito"
-    divProds.append(btnComprar)
     btnComprar.className = 'btn-comprar'
+    divProds.append(btnComprar)
+    
     //ejecuto todo el foreach en un <div>
     main.append(divProds);
 
     //agregar el producto al carrito
     btnComprar.onclick = () => {
-    if (prod.stock > 0) {
-        //logica para el boton confirmar con sweetalert
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Producto agregado al carrito',
-            showConfirmationButton: false,
-            timer: 1000
-        }),
-        carrito.push({
-            id: prod.id,
-            img: prod.imag,
-            nombre: prod.nombre,
-            precio: prod.precio,
-            // stock: prod.stock,        
-        });
+        if (prod.stock > 0) {
+            //logica para el boton confirmar con sweetalert
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Producto agregado al carrito',
+                showConfirmationButton: false,
+                timer: 1000
+            });
+
+    const existingProduct = carrito.find(item => item.id === prod.id);
+        if (existingProduct) {
+            existingProduct.cantidad++;
+            } else {
+            carrito.push({
+                id: prod.id,
+                img: prod.imag,
+                nombre: prod.nombre,
+                precio: prod.precio,
+                cantidad: 1
+            });
+    }
 
     // JSON para item onclick
     localStorage.setItem('Carrito', JSON.stringify((carrito)))
@@ -142,64 +148,6 @@ productos.forEach((prod) => {
         };
     }
 )
-
-// div para el acceso al carrito
-const divModal = document.createElement('div')
-divModal.innerHTML = "<button>🛒</button>"
-divModal.className = 'modal-carrito'
-header.append(divModal)
-
-
-// accion sobre el boton Cart
-divModal.addEventListener("click", () => {
-    divModal.innerHTML="";
-    divModal.style.display = "flex"
-    const modalHeader = document.createElement('div')
-    modalHeader.className ='modal-box'
-    modalHeader.innerHTML = `
-        <h2 class="modal-title">Carrito de compras</h2>
-    `;
-    divModal.append(modalHeader);
-    // creo el boton para cerrar el modal
-    const modalCancel = document.createElement('p')
-    modalCancel.className ='modal-cancel'
-    modalCancel.innerHTML = `x`;
-    
-    modalCancel.addEventListener("click", () => {
-        divModal.style.display = "none"
-    })
-    modalHeader.append(modalCancel);
-
-    
-    // creo el contenido de mi modal
-
-    //busco mis productos
-
-    carrito.forEach((producto) => { // Changed variable name from 'productos' to 'producto'
-        let carritoContent = document.createElement('div')
-        carritoContent.className = "modal-content"
-        carritoContent.innerHTML = ` 
-                    <h3>${producto.nombre}</h3>
-                    <img src="${producto.img}" alt="${producto.alt}">
-                    <p>Precio: $${producto.precio}</p>
-        `
-        modalHeader.append(carritoContent)
-    })
-
-    const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
-    // Display total in the modal
-    const totalElement = document.createElement('p');
-    totalElement.textContent = `Total a pagar: $${total}`;
-    modalHeader.append(totalElement);
-
-    // creo boton de confirmar compra
-    const btnConfirmar = document.createElement('button')
-    btnConfirmar.innerText = "Confirmar pedido"
-    modalHeader.append(btnConfirmar)
-    btnConfirmar.className = 'btn-confirmar-compra'
-})
-
-
 
 
 // FOOTER

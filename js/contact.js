@@ -1,8 +1,9 @@
 // Defino mis elementos
 const head = document.head
 const body = document.body
-
+const header = document.createElement('header')
 const divs = document.createElement('div')
+
 
 // HEAD
 
@@ -11,16 +12,11 @@ const divs = document.createElement('div')
 // title
 const titulo = document.createElement('title') // creo el elemento titulo
 
-titulo.innerText = "Maxiquiosco FC" //agrego el contenido
+titulo.innerText = "Maxiquiosco FC - Contacto" //agrego el contenido
 
 head.appendChild(titulo) // agrego el elemento a mi estructura
 
-
 // BODY
-
-
-// navbar
-const header = document.createElement('header')
 
 // logo
 const divLogo = document.createElement('div')
@@ -30,11 +26,12 @@ divLogo.style.width = '10%'
 header.append(divLogo)
 
 
-
-const navBar = document.createElement('navbar')
+// navbar
+const navBar = document.createElement('nav')
 const uls = document.createElement('ul')
 header.className = 'menu'
 divs.className = 'nav-menu' // asigno una clase a mi menu
+
 
 const links = [             // creo los links de mi menu
     {
@@ -48,8 +45,7 @@ const links = [             // creo los links de mi menu
     {
         page: 'contact',
         link: 'Contacto'
-    },
-
+    }
 ]
 
 body.prepend(header)
@@ -57,21 +53,13 @@ header.append(navBar)
 navBar.append(divs)
 divs.append(uls)
 
-const divModal = document.createElement('div')
-divModal.innerHTML = `🛒`
-divModal.className = 'modal'
-header.append(divModal)
-
 header.style.background = '#667AD9'
 
-// searchBar
-
-
 // Titulo de index
-const h1Titulo = document.createElement('h1') //creo el tag titulo a un H1
+const h1Titulo = document.createElement('h1') //asigno el tag titulo a un H1
 
 h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`; // genero el texto para mi tag h1
-h1Titulo.style.color = '#26388C' // agrego los estilos a mi h1
+h1Titulo.style.color = '#26388C'
 document.body.append(h1Titulo) // Agrego el nodo titulo
 
 
@@ -86,6 +74,7 @@ main.append(sectionMain)                              // inserto la section
 
 
 // formulario
+
 
 
 // FOOTER

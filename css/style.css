@@ -24,13 +24,6 @@ ul {
     list-style-type: none
   }
 
-menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-    align-items: center;
-    background-image: url('../img/boca-dentro-pasto.jpg'); 
-}
 
 /* index */
 
@@ -53,16 +46,26 @@ menu {
   text-decoration: none;
 }
 
+.menu img {
+  align-self: flex-start;
+}
+
 .nav-link{
   text-decoration: none;
   color: #D9BC66;
 }
 
-.modal-carrito {
-  
+/* Productos */
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: #26388C;
+  color: #D9BC66;
 }
 
-/* Productos */
+.swal2-timer-progress-bar {
+  height: 2rem !important;
+}
+
 .btn-comprar {
   background-color: #263D8C;
   color: #FFE291;
@@ -81,14 +84,14 @@ menu {
 
 .contenedor-productos {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
 
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 grey;
+  box-shadow: 0 4px 8px 0 #D9BC66;
   max-width: 300px;
   margin: auto;
   text-align: center;
@@ -99,23 +102,41 @@ menu {
   opacity: 0.8;
 }
 
+.modal-carrito {
+  padding-right: 20px;
+}
+
 .modal-box {
-  width: 75%;
   margin: 20px;
-  max-height: 70vh;
-  color: #FFECB2;
-  background-color: #26388C;
+  color: rgb(207, 207, 49);
+  background-color: rgba(40, 40, 197, 0.995);
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
+  position: relative;
   overflow: auto;
   z-index: 5;
-  top: 50px;
+  /* top: 40vh;
+  left: 50%; */
 }
 
-.modal-title {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal-header-title {
   justify-self: start;
+  padding: 10px;
+}
+
+.modal-cancel {
+  cursor: pointer;
+  display: flex;
+  padding: 10px;
+  align-self: flex-end;
+  position: absolute;
 }
 
 .modal-content {
@@ -123,15 +144,12 @@ menu {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 85%;
+  width: 100%;
   margin: 10px;
 }
 
-.modal-cancel {
-  cursor: pointer;
+.modal-content h3 {
   display: flex;
-  justify-content: end;
-  align-items: end;
 }
 
 .btn-confirmar-compra {
@@ -142,11 +160,6 @@ menu {
   cursor: pointer;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-  background-color: #26388C;
-  color: #D9BC66;
-}
-
-.swal2-timer-progress-bar {
-  height: 2rem !important;
+.delete-product {
+  cursor: pointer;
 }
