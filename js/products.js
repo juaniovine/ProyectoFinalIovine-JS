@@ -53,6 +53,10 @@ const h1Titulo = document.createElement('h1')
 
 h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`;
 h1Titulo.style.color = '#26388C'
+h1Titulo.style.display = 'flex'; // Usa flexbox para centrar
+h1Titulo.style.justifyContent = 'center'; // Centra horizontalmente
+h1Titulo.style.alignItems = 'center'; // Centra verticalmente
+h1Titulo.style.height = '5vh';
 document.body.append(h1Titulo)
 
 // main
@@ -130,15 +134,31 @@ const saveLocal = () => {
     localStorage.setItem('Carrito', JSON.stringify((carrito)))
 }
 
-// FOOTER
-
+// Footer
 const footer = document.createElement('footer')
 body.append(footer)
 
+const year = new Date().getFullYear();
+
 footer.className = 'footer'
-footer.innerHTML = `
-                    Contenido para el footer - Links redes sociales - Fecha - Derechos reservados
-                   `
-footer.style.background = '#667AD9'
+footer.style.background = '#667AD9' 
+const redesSociales = document.createElement('div');
+redesSociales.className = 'redes-sociales';
 
+const enlaceInstagram = document.createElement('a');
+enlaceInstagram.href = 'https://www.instagram.com//';
+enlaceInstagram.target = '_blank';
+enlaceInstagram.textContent = 'Instagram';
 
+const enlaceMercadoLibre = document.createElement('a');
+enlaceMercadoLibre.href = 'https://www.mercadolibre.com.ar/';
+enlaceMercadoLibre.target = '_blank';
+enlaceMercadoLibre.textContent = 'MercadoLibre';
+
+redesSociales.append(enlaceInstagram, document.createTextNode(' | '), enlaceMercadoLibre);
+
+// Generar contenido para los derechos reservados
+const derechosReservados = document.createElement('p');
+derechosReservados.textContent = `© ${year} Maxiquiosco FC. Todos los derechos reservados.`;
+
+footer.append(redesSociales, derechosReservados);

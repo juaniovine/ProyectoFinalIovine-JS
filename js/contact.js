@@ -60,32 +60,96 @@ const h1Titulo = document.createElement('h1') //asigno el tag titulo a un H1
 
 h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`; // genero el texto para mi tag h1
 h1Titulo.style.color = '#26388C'
+h1Titulo.style.display = 'flex'; // Usa flexbox para centrar
+h1Titulo.style.justifyContent = 'center'; // Centra horizontalmente
+h1Titulo.style.alignItems = 'center'; // Centra verticalmente
+h1Titulo.style.height = '20vh';
 document.body.append(h1Titulo) // Agrego el nodo titulo
 
 
-// main
-const main = document.createElement('main') //creo el main
-body.append(main)                           // inserto el main
+// acceso al carrito
 
-const sectionMain = document.createElement('section') //creo la section
-sectionMain.style.background = '#bfffbf'              // aplico estilos
-sectionMain.id = 'home-main'                          // agrego un ID "contenedor" 
-main.append(sectionMain)                              // inserto la section
+const carritoString = localStorage.getItem('carrito');
+const carrito = carritoString ? JSON.parse(carritoString) : [];
+
 
 
 // formulario
 
+// Crear la sección de contacto
+const sectionContacto = document.createElement('section');
+sectionContacto.id = 'contacto';
+
+// Crear contenido para la sección de contacto
+const contactTitle = document.createElement('h2');
+contactTitle.textContent = 'Contactanos'; // Título de la sección de contacto
+
+const contactForm = document.createElement('form');
+contactForm.className = 'contact-form'; // Clase para aplicar estilos si es necesario
+contactForm.style.height = '50vh';
+
+const nameLabel = document.createElement('label');
+nameLabel.textContent = 'Nombre:';
+const nameInput = document.createElement('input');
+nameInput.type = 'text';
+nameInput.name = 'nombre';
+
+const emailLabel = document.createElement('label');
+emailLabel.textContent = 'Email:';
+const emailInput = document.createElement('input');
+emailInput.type = 'email';
+emailInput.name = 'email';
+
+const messageLabel = document.createElement('label');
+messageLabel.textContent = 'Mensaje:';
+const messageTextarea = document.createElement('textarea');
+messageTextarea.name = 'mensaje';
+messageTextarea.rows = 4;
+
+const submitButton = document.createElement('button');
+submitButton.type = 'submit';
+submitButton.textContent = 'Enviar';
+
+// Agregar elementos al formulario de contacto
+contactForm.append(
+  nameLabel, nameInput,
+  emailLabel, emailInput,
+  messageLabel, messageTextarea,
+  submitButton
+);
+
+// Agregar elementos a la sección de contacto
+sectionContacto.append(contactTitle, contactForm);
+
+// Agregar la sección de contacto al documento
+body.append(sectionContacto);
 
 
-// FOOTER
-// incluir Nombre del negocio (y logo de derechos) | redes sociales | año 
+// Footer
 const footer = document.createElement('footer')
 body.append(footer)
 
 const year = new Date().getFullYear();
 
 footer.className = 'footer'
-footer.innerHTML = `
-                    Contenido para el footer (derechos res) | redes sociales | ${year}
-                   `
 footer.style.background = '#667AD9' 
+const redesSociales = document.createElement('div');
+redesSociales.className = 'redes-sociales';
+
+const enlaceInstagram = document.createElement('a');
+enlaceInstagram.href = 'https://www.instagram.com//';
+enlaceInstagram.target = '_blank';
+enlaceInstagram.textContent = 'Instagram';
+
+const enlaceMercadoLibre = document.createElement('a');
+enlaceMercadoLibre.href = 'https://www.mercadolibre.com.ar/';
+enlaceMercadoLibre.target = '_blank';
+enlaceMercadoLibre.textContent = 'MercadoLibre';
+
+redesSociales.append(enlaceInstagram, document.createTextNode(' | '), enlaceMercadoLibre);
+
+// Generar contenido para los derechos reservados
+const derechosReservados = document.createElement('p');
+derechosReservados.textContent = `© ${year} Maxiquiosco FC. Todos los derechos reservados.`;
+
+footer.append(redesSociales, derechosReservados);

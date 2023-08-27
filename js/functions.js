@@ -114,6 +114,7 @@ divModal.addEventListener('click', () => {
     modalHeader.append(btnConfirmar)
     btnConfirmar.className = 'btn-confirmar-compra'
 
+
 // recalculo el total por cambio de cantidad
 function recalcularTotal() {
     const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
