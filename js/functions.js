@@ -49,11 +49,15 @@ divModal.addEventListener('click', () => {
         carritoContent.innerHTML = ` 
                     <h3>${producto.nombre}</h3>
                     <img src="${producto.img}" alt="${producto.alt}">
+                    <div class="info-cart">
                     <p>Precio c/u: $${producto.precio}</p>
-                    <button class="btn-decrementar">-</button>
+                    <div class="btn-cart-cantidad">
+                        <button class="btn-decrementar">-</button>
+                        <button class="btn-incrementar">+</button>
+                    </div>
                     <p>Cantidad: ${producto.cantidad}</p>
-                    <button class="btn-incrementar">+</button>
                     <p>Total: $${producto.cantidad * producto.precio}</p>
+                    </div>
         `;
 // botones de suma y resta de productos
         const btnIncrementar = carritoContent.querySelector('.btn-incrementar');

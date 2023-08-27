@@ -1,0 +1,70 @@
+[
+    {
+        "id": 1, 
+        "nombre": "Galletitas Oreo", 
+        "precio": 720, 
+        "stock": 50, 
+        "tipo": "almacen", 
+        "imag":"../img/oreo.jpg", 
+        "alt": "paquete oreo 117 gramos", 
+        "cantidad": 1
+    },
+    {
+        "id": 2, 
+        "nombre": "Alfajor Jorgito", 
+        "precio": 280, 
+        "stock": 100,
+        "tipo": "almacen", 
+        "imag":"../img/alfajor-jorgito.png", 
+        "alt": "alfajor jorgito simple", 
+        "cantidad": 1
+    },
+	{
+        "id": 3, 
+        "nombre": "Queso Finlandia light 330gr",
+        "precio": 950, 
+        "stock": 0, "tipo": "almacen", 
+        "imag":"../img/finlandia-light.png", 
+        "alt": "queso crema finlandia 330 gramos", 
+        "cantidad": 1},
+	{
+        "id": 4, 
+        "nombre": "Agua Villavicencio", 
+        "precio": 520, 
+        "stock": 200, 
+        "tipo": "bebidas", 
+        "imag":"../img/agua-villavicencio.png", 
+        "alt": "botella agua villavicencio dos litros", 
+        "cantidad": 1
+    },
+	{
+        "id": 5, 
+        "nombre": "Coca Cola 1,75 ltrs", 
+        "precio": 950, 
+        "stock": 200, 
+        "tipo": "bebidas", 
+        "imag":"../img/coca-cola.png", 
+        "alt": "coca cola 1,75 litros", 
+        "cantidad": 1
+    },
+	{
+        "id": 6, 
+        "nombre": "Vino Trivento Malbec", 
+        "precio": 1600, 
+        "stock": 10, 
+        "tipo": "bebidas alcoholicas", 
+        "imag":"../img/trivento-malbec.png", 
+        "alt": "vino malbec Trivento medalla", 
+        "cantidad": 1
+    },
+    {
+        "id": 7, 
+        "nombre": "Cerveza Heineken 1 ltr", 
+        "precio": 900, 
+        "stock": 150, 
+        "tipo": "bebidas alcoholicas", 
+        "imag":"../img/heineken.png", 
+        "alt": "cerveza heineken un litro", 
+        "cantidad": 1
+    }
+]
